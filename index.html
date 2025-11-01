@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thirunavukkarasu weds Manjula 💍</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap"
+        rel="stylesheet">
+    <style>
+        /* body {
+            margin: 0;
+            font-family: "Playfair Display", serif;
+            background: radial-gradient(circle at center, #fff4e0, #daa239);
+            overflow-x: hidden;
+            color: #5a2d0c;
+            position: relative;
+            min-height: 100vh;
+        } */
+
+        body {
+            margin: 0;
+            font-family: "Playfair Display", serif;
+            background: linear-gradient(135deg, #ff9ff3, #feca57, #48dbfb, #1dd1a1);
+            background-size: 400% 400%;
+            animation: gradientFlow 10s ease infinite;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            text-align: center;
+            padding: 30px 15px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: "Great Vibes", cursive;
+            font-size: 2.8em;
+            color: #b30000;
+            text-shadow: 2px 2px 6px #ffd6a0;
+            margin: 10px 0;
+        }
+
+        h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 1.3em;
+            color: #8b0000;
+            margin-bottom: 20px;
+        }
+
+        .radha-krishna {
+            width: 180px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px 10px rgba(255, 174, 66, 0.5);
+            margin: 20px auto;
+            display: block;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .details {
+            background: rgba(255, 247, 236, 0.95);
+            border: 2px solid #e0b974;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 15px auto;
+            width: 90%;
+            max-width: 500px;
+            font-size: 1.1em;
+            line-height: 1.6em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .location-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            color: #fff;
+            font-weight: 600;
+            padding: 10px 22px;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .location-btn:hover {
+            background: linear-gradient(135deg, #ff8c00, #ff4500);
+            transform: scale(1.05);
+        }
+
+        .countdown {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            color: #8b0000;
+            margin-top: 15px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1em;
+            color: #6a3b0c;
+        }
+
+        /* ❤️ Floating hearts */
+        .hearts {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -20px;
+            color: #ff3366;
+            font-size: 20px;
+            opacity: 0.8;
+            animation: rise 6s linear infinite;
+        }
+
+        .share-btn {
+            position: fixed;
+            bottom: 20px;
+            /* distance from bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #ff4081, #ff1744);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            /* keeps above all content */
+        }
+
+        .share-btn:hover {
+            background: linear-gradient(135deg, #ff1744, #d500f9);
+            transform: translateX(-50%) scale(1.05);
+        }
+
+        .music-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 9999;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(45deg, #ff9f43, #ff6b6b);
+        }
+
+        @media (max-width: 768px) {
+            .music-btn {
+                bottom: 70px;
+                right: 10px;
+                padding: 10px 16px;
+                font-size: 14px;
+            }
+        }
+
+        /* root defaults: desktop */
+        :root {
+            --cube-size: 130px;
+            /* base cube size */
+            --face-depth: calc(var(--cube-size) / 2);
+            /* depth = half of size */
+        }
+
+        /* responsive overrides */
+        @media (max-width: 768px) {
+            :root {
+                --cube-size: 110px;
+            }
+
+            /* tablet */
+        }
+
+        @media (max-width: 480px) {
+            :root {
+                --cube-size: 86px;
+            }
+
+            /* mobile */
+        }
+
+        /* Container that moves around the screen automatically */
+        .floating-cube {
+            position: fixed;
+            width: var(--cube-size);
+            height: var(--cube-size);
+            perspective: 800px;
+            animation: floatAround 25s infinite linear alternate;
+            z-index: 1000;
+        }
+
+        /* Rotating cube */
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: spinCube 10s infinite linear;
+        }
+
+        .face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #ffd700;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        /* use calc(var(--face-depth)) so it scales with cube size */
+        .front {
+            transform: translateZ(calc(var(--face-depth)));
+        }
+
+        .back {
+            transform: rotateY(180deg) translateZ(calc(var(--face-depth)));
+        }
+
+        .right {
+            transform: rotateY(90deg) translateZ(calc(var(--face-depth)));
+        }
+
+        .left {
+            transform: rotateY(-90deg) translateZ(calc(var(--face-depth)));
+        }
+
+        .top {
+            transform: rotateX(90deg) translateZ(calc(var(--face-depth)));
+        }
+
+        .bottom {
+            transform: rotateX(-90deg) translateZ(calc(var(--face-depth)));
+        }
+
+        /* Continuous cube rotation */
+        @keyframes spinCube {
+            from {
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+
+            to {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        /* Auto movement around screen */
+        @keyframes floatAround {
+            0% {
+                top: 10%;
+                left: 10%;
+                transform: translate(0, 0);
+            }
+
+            25% {
+                top: 15%;
+                left: 70%;
+                transform: translate(0, 0);
+            }
+
+            50% {
+                top: 70%;
+                left: 60%;
+                transform: translate(0, 0);
+            }
+
+            75% {
+                top: 60%;
+                left: 20%;
+                transform: translate(0, 0);
+            }
+
+            100% {
+                top: 10%;
+                left: 10%;
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes rise {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-110vh) scale(0.5);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .details {
+                font-size: 1em;
+            }
+
+            .radha-krishna {
+                width: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts"></div>
+
+    <div class="container">
+        <h1>💫 Thirunavukkarasu ❤️ Manjula 💫</h1>
+        <h2>“Mathi” – where our journey begins</h2>
+
+        <img src="assets/Radha_krishna.jpg" alt="Radha Krishna"
+            class="radha-krishna" />
+
+        <div class="floating-cube">
+            <div class="cube">
+                <div class="face front"><img src="assets/photo1.jpeg" alt="Front"></div>
+                <div class="face back"><img src="assets/photo2.jpeg" alt="Back"></div>
+                <div class="face right"><img src="assets/photo3.jpeg" alt="Right"></div>
+                <div class="face left"><img src="assets/photo4.jpeg" alt="Left"></div>
+                <div class="face top"><img src="assets/photo5.jpeg" alt="Top"></div>
+                <div class="face bottom"><img src="assets/photo6.jpeg" alt="Bottom"></div>
+            </div>
+        </div>
+
+        <div class="details">
+            <p>With blessings of Almighty and our families,</p>
+            <p>We joyfully invite you to celebrate our wedding reception!</p>
+            <p><strong>📍 Venue:</strong> Sengunthar Mandapam, Tharamangalam</p>
+            <p><strong>🗓️ Date:</strong> Saturday, 30th November | 6 PM onwards</p>
+            <p>
+                <a href="https://maps.app.goo.gl/wdGCWZXpe5xTos8B8" target="_blank" class="location-btn">
+                    📍 View Location
+                </a>
+            </p>
+        </div>
+
+        <div class="countdown">
+            Countdown to our Big Day: <span id="countdown"></span>
+        </div>
+
+        <div class="footer">
+            <p>💖 With love,</p>
+            <p><strong>Mathi</strong></p>
+            <a href="#" class="share-btn" id="shareBtn">💌 Send to Loved Ones</a>
+        </div>
+    </div>
+
+    <!-- 🎵 Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="assets/music.mpeg" type="audio/mpeg">
+    </audio>
+
+    <!-- 🎵 Play Button -->
+    <button id="musicBtn" class="music-btn">▶ Play Music</button>
+
+    <script>
+        // ❤️ Floating hearts animation
+        const heartsContainer = document.querySelector('.hearts');
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.textContent = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = 15 + Math.random() * 25 + 'px';
+            heart.style.animationDuration = 5 + Math.random() * 3 + 's';
+            heartsContainer.appendChild(heart);
+            setTimeout(() => heart.remove(), 8000);
+        }
+        setInterval(createHeart, 500);
+
+        const music = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicBtn');
+
+        btn.addEventListener('click', () => {
+            if (music.paused) {
+                music.play();
+                btn.textContent = '⏸ Pause Music';
+            } else {
+                music.pause();
+                btn.textContent = '▶ Play Music';
+            }
+        });
+
+        // 🕰️ Countdown
+        const weddingDate = new Date("November 30, 2025 18:00:00").getTime();
+        const countdown = document.getElementById("countdown");
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            countdown.textContent = `${days} days ${hours} hrs ${minutes} mins`;
+        }, 1000);
+
+        // Share button
+        document.getElementById("shareBtn").addEventListener("click", async () => {
+            const shareData = {
+                title: "Mathi Wedding Invitation",
+                text: "Join us to celebrate the love of Thirunavukkarasu ❤️ Manjula on 30th Nov, 6PM @ Sengunthar Mandapam!",
+                url: window.location.href
+            };
+            if (navigator.share) {
+                await navigator.share(shareData);
+            } else {
+                alert("Sharing not supported on this device");
+            }
+        });
+    </script>
+</body>
+
+</html>
