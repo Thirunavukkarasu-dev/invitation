@@ -544,6 +544,62 @@
                 font-size: 0.85em;
                 padding: 8px 16px;
             }
+
+            .guestbook-section {
+                width: 95%;
+                padding: 0 5px;
+            }
+
+            .guestbook-title {
+                font-size: 2em;
+                margin-bottom: 20px;
+            }
+
+            .guestbook-form {
+                padding: 20px 15px;
+            }
+
+            .guestbook-input {
+                padding: 10px;
+                font-size: 0.95em;
+            }
+
+            .guestbook-btn {
+                padding: 10px 25px;
+                font-size: 1em;
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .guestbook-message {
+                padding: 15px;
+            }
+
+            .guestbook-message-name {
+                font-size: 1em;
+            }
+
+            .guestbook-message-text {
+                font-size: 0.95em;
+            }
+
+            .guestbook-messages {
+                max-height: 300px;
+            }
+
+            .guestbook-admin-btn {
+                padding: 8px 16px;
+                font-size: 0.85em;
+                width: 100%;
+                max-width: 200px;
+                margin: 5px auto;
+                display: block;
+            }
+
+            .all-blessings-container {
+                padding: 20px 15px;
+                max-height: 400px;
+            }
         }
 
         /* Sparkle Animation */
@@ -604,6 +660,178 @@
         /* Smooth Scroll */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Guest Book - Responsive */
+        .guestbook-section {
+            margin: 50px auto;
+            width: 90%;
+            max-width: 600px;
+            padding: 0 10px;
+        }
+
+        .guestbook-title {
+            font-family: "Great Vibes", cursive;
+            font-size: 2.5em;
+            color: #b30000;
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 214, 160, 0.5);
+        }
+
+        .guestbook-form {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 236, 0.95));
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .guestbook-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 10px;
+            font-family: "Playfair Display", serif;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.8);
+            box-sizing: border-box;
+        }
+
+        .guestbook-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .guestbook-btn {
+            background: linear-gradient(135deg, #ff4081, #ff1744);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .guestbook-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .guestbook-btn:active {
+            transform: translateY(0);
+        }
+
+        .guestbook-messages {
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px 0;
+        }
+
+        .guestbook-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .guestbook-messages::-webkit-scrollbar-track {
+            background: rgba(255, 247, 236, 0.5);
+            border-radius: 10px;
+        }
+
+        .guestbook-messages::-webkit-scrollbar-thumb {
+            background: rgba(255, 215, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        .guestbook-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 215, 0, 0.7);
+        }
+
+        .guestbook-message {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 236, 0.95));
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.5s ease-out;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .guestbook-message-name {
+            font-weight: 600;
+            color: #8b0000;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .guestbook-message-text {
+            color: #5a2d0c;
+            line-height: 1.6;
+            word-wrap: break-word;
+        }
+
+        .guestbook-message-date {
+            font-size: 0.85em;
+            color: #999;
+            margin-top: 8px;
+        }
+
+        .guestbook-admin-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .guestbook-admin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .guestbook-admin-btn:active {
+            transform: translateY(0);
+        }
+
+        .all-blessings-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 236, 0.95));
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .all-blessings-title {
+            font-family: "Great Vibes", cursive;
+            font-size: 2em;
+            color: #b30000;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .blessing-count {
+            text-align: center;
+            color: #8b0000;
+            font-weight: 600;
+            margin-bottom: 20px;
+            font-size: 1.1em;
         }
 
         /* Add to Calendar Button */
@@ -835,7 +1063,8 @@
         <div class="details">
             <p>With blessings of Almighty and our families,</p>
             <p>We joyfully invite you to celebrate our special moments!</p>
-            <p><strong>📍 Venue:</strong> Sengunthar Mudaliar Thirumana Mandapam, Tharamangalam</p>
+            <p><strong>🎉 Reception Venue:</strong> Sengunthar Mudaliar Thirumana Mandapam, Tharamangalam</p>
+            <p><strong>💍 Wedding Venue:</strong> Kailasanathar Temple, Tharamangalam</p>
             <p>
                 <a href="https://maps.app.goo.gl/wdGCWZXpe5xTos8B8" target="_blank" class="location-btn">
                     📍 View Location
@@ -873,7 +1102,7 @@
             </div>
             <div class="event-time">⏰ 4:30 AM to 6:00 AM</div>
             <div style="margin-top: 15px;">
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20Ceremony%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251201T043000/20251201T060000&details=Join%20us%20for%20the%20wedding%20ceremony!&location=Sengunthar%20Mudaliar%20Thirumana%20Mandapam%2C%20Tharamangalam" 
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20Ceremony%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251201T043000/20251201T060000&details=Join%20us%20for%20the%20wedding%20ceremony!&location=Kailasanathar%20Temple%2C%20Tharamangalam" 
                    target="_blank" class="calendar-btn">📅 Add to Calendar</a>
             </div>
         </div>
@@ -884,6 +1113,23 @@
         <div class="quote-section">
             <div class="quote-text">"Love is not about how many days, months, or years you have been together. It's about how much you love each other every single day."</div>
             <div class="quote-author">— Unknown</div>
+        </div>
+
+        <!-- Guest Book -->
+        <div class="guestbook-section">
+            <div class="guestbook-title">💌 Leave Your Blessings</div>
+            <div class="guestbook-form">
+                <input type="text" class="guestbook-input" id="guestName" placeholder="Your Name" required>
+                <textarea class="guestbook-input guestbook-textarea" id="guestMessage" placeholder="Your heartfelt message..." required></textarea>
+                <button class="guestbook-btn" onclick="addGuestMessage()">Send Blessing 💕</button>
+            </div>
+            <div class="guestbook-messages" id="guestbookMessages"></div>
+            <!-- Admin View Button (for couple to see all blessings) -->
+            <div style="text-align: center; margin-top: 20px;">
+                <button class="guestbook-admin-btn" onclick="viewAllBlessings()" id="viewBlessingsBtn">👁️ View All Blessings</button>
+                <button class="guestbook-admin-btn" onclick="exportBlessings()" id="exportBlessingsBtn" style="display: none; margin-left: 10px;">📥 Export Blessings</button>
+            </div>
+            <div id="allBlessingsView" style="display: none; margin-top: 20px;"></div>
         </div>
 
         <div class="footer">
@@ -964,7 +1210,7 @@
         document.getElementById("shareBtn").addEventListener("click", async () => {
             const shareData = {
                 title: "💍 Thirunavukkarasu & Manjula Wedding Invitation",
-                text: "💕 You're cordially invited to celebrate our special day! 💕\n\n🎉 Reception: November 30, 2025 at 6:00 PM onwards\n💍 Wedding Ceremony: December 1, 2025 from 4:30 AM to 6:00 AM\n\n📍 Venue: Sengunthar Mudaliar Thirumana Mandapam, Tharamangalam\n\nJoin us as we begin our journey of love and togetherness! ❤️\n\nWith blessings and love,\nThirunavukkarasu & Manjula",
+                text: "💕 You're cordially invited to celebrate our special day! 💕\n\n🎉 Reception: November 30, 2025 at 6:00 PM onwards\n📍 Reception Venue: Sengunthar Mudaliar Thirumana Mandapam, Tharamangalam\n\n💍 Wedding Ceremony: December 1, 2025 from 4:30 AM to 6:00 AM\n📍 Wedding Venue: Kailasanathar Temple, Tharamangalam\n\nJoin us as we begin our journey of love and togetherness! ❤️\n\nWith blessings and love,\nThirunavukkarasu & Manjula",
                 url: window.location.href
             };
             if (navigator.share) {
@@ -1002,7 +1248,7 @@
         }, observerOptions);
 
         // Observe elements for scroll animation
-        document.querySelectorAll('.event-card, .quote-section, .details').forEach(el => {
+        document.querySelectorAll('.event-card, .quote-section, .details, .guestbook-section').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -1052,6 +1298,158 @@
                     setTimeout(() => confetti.remove(), 5000);
                 }, i * 50);
             }
+        }
+
+
+        // Guest Book Functionality
+        function loadGuestMessages() {
+            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+            const messagesContainer = document.getElementById('guestbookMessages');
+            messagesContainer.innerHTML = '';
+
+            if (messages.length === 0) {
+                messagesContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No messages yet. Be the first to leave a blessing! 💕</p>';
+                return;
+            }
+
+            messages.reverse().forEach(msg => {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'guestbook-message';
+                messageDiv.innerHTML = `
+                    <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
+                    <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
+                    <div class="guestbook-message-date">${msg.date}</div>
+                `;
+                messagesContainer.appendChild(messageDiv);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addGuestMessage() {
+            const name = document.getElementById('guestName').value.trim();
+            const message = document.getElementById('guestMessage').value.trim();
+
+            if (!name || !message) {
+                alert('Please fill in both your name and message! 💕');
+                return;
+            }
+
+            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+            const newMessage = {
+                name: name,
+                message: message,
+                date: new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+
+            messages.push(newMessage);
+            localStorage.setItem('guestbookMessages', JSON.stringify(messages));
+
+            // Clear form
+            document.getElementById('guestName').value = '';
+            document.getElementById('guestMessage').value = '';
+
+            // Reload messages
+            loadGuestMessages();
+
+            // Show thank you message
+            alert('Thank you for your beautiful blessing! 💕');
+        }
+
+        // Load guest messages on page load
+        loadGuestMessages();
+
+        // View All Blessings (for couple to see all messages)
+        function viewAllBlessings() {
+            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+            const viewContainer = document.getElementById('allBlessingsView');
+            const viewBtn = document.getElementById('viewBlessingsBtn');
+            const exportBtn = document.getElementById('exportBlessingsBtn');
+
+            if (viewContainer.style.display === 'none') {
+                if (messages.length === 0) {
+                    viewContainer.innerHTML = `
+                        <div class="all-blessings-container">
+                            <div class="all-blessings-title">💌 All Blessings</div>
+                            <div class="blessing-count">No blessings yet. Be the first! 💕</div>
+                        </div>
+                    `;
+                } else {
+                    let html = `
+                        <div class="all-blessings-container">
+                            <div class="all-blessings-title">💌 All Blessings</div>
+                            <div class="blessing-count">Total: ${messages.length} blessing${messages.length > 1 ? 's' : ''} 💕</div>
+                    `;
+                    
+                    messages.reverse().forEach((msg, index) => {
+                        html += `
+                            <div class="guestbook-message" style="margin-bottom: 15px;">
+                                <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
+                                <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
+                                <div class="guestbook-message-date">${msg.date}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                    viewContainer.innerHTML = html;
+                }
+                
+                viewContainer.style.display = 'block';
+                viewBtn.textContent = '🙈 Hide Blessings';
+                exportBtn.style.display = 'inline-block';
+            } else {
+                viewContainer.style.display = 'none';
+                viewBtn.textContent = '👁️ View All Blessings';
+                exportBtn.style.display = 'none';
+            }
+        }
+
+        // Export Blessings to Text File
+        function exportBlessings() {
+            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+            
+            if (messages.length === 0) {
+                alert('No blessings to export yet! 💕');
+                return;
+            }
+
+            let textContent = '💌 WEDDING BLESSINGS - Thirunavukkarasu & Manjula\n';
+            textContent += '='.repeat(50) + '\n\n';
+            textContent += `Total Blessings: ${messages.length}\n`;
+            textContent += `Exported on: ${new Date().toLocaleString()}\n\n`;
+            textContent += '='.repeat(50) + '\n\n';
+
+            messages.reverse().forEach((msg, index) => {
+                textContent += `Blessing #${index + 1}\n`;
+                textContent += `Name: ${msg.name}\n`;
+                textContent += `Date: ${msg.date}\n`;
+                textContent += `Message: ${msg.message}\n`;
+                textContent += '-'.repeat(50) + '\n\n';
+            });
+
+            // Create and download file
+            const blob = new Blob([textContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `wedding-blessings-${new Date().toISOString().split('T')[0]}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert(`Blessings exported successfully! 📥\n\nTotal: ${messages.length} blessing${messages.length > 1 ? 's' : ''}`);
         }
 
         // Trigger confetti on page load
