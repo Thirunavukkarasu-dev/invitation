@@ -1439,62 +1439,16 @@
             console.log('Firebase initialization error. Using localStorage fallback:', error);
         }
 
-        // Guest Book Functionality with Firebase + localStorage fallback
+        // Guest Book Functionality - Load from localStorage only (default view)
+        // This shows only blessings added on this device
         function loadGuestMessages() {
             const messagesContainer = document.getElementById('guestbookMessages');
             // Hide messages container by default - only show when there are new messages
             messagesContainer.style.display = 'none';
             messagesContainer.innerHTML = '';
 
-            if (firebaseInitialized && db) {
-                // Load from Firebase
-                db.collection('blessings')
-                    .orderBy('timestamp', 'desc')
-                    .limit(10)
-                    .get()
-                    .then((snapshot) => {
-                        messagesContainer.innerHTML = '';
-
-                        if (snapshot.empty) {
-                            // Keep hidden if no messages
-                            messagesContainer.style.display = 'none';
-                            return;
-                        }
-
-                        // Show container only if there are messages
-                        messagesContainer.style.display = 'block';
-
-                        snapshot.forEach((doc) => {
-                            const msg = doc.data();
-                            // Handle Firestore timestamp
-                            if (!msg.date && msg.timestamp) {
-                                const timestamp = msg.timestamp.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp);
-                                msg.date = timestamp.toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                    hour: '2-digit',
-                                    minute: '2-digit'
-                                });
-                            }
-                            const messageDiv = document.createElement('div');
-                            messageDiv.className = 'guestbook-message';
-                            messageDiv.innerHTML = `
-                                <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
-                                <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
-                                <div class="guestbook-message-date">${msg.date}</div>
-                            `;
-                            messagesContainer.appendChild(messageDiv);
-                        });
-                    })
-                    .catch((error) => {
-                        console.error('Error loading messages:', error);
-                        loadFromLocalStorage();
-                    });
-            } else {
-                // Fallback to localStorage
-                loadFromLocalStorage();
-            }
+            // Always load from localStorage for default view (only local blessings)
+            loadFromLocalStorage();
         }
 
         function loadFromLocalStorage() {
@@ -1502,25 +1456,9 @@
             const messagesContainer = document.getElementById('guestbookMessages');
             messagesContainer.innerHTML = '';
 
-            if (messages.length === 0) {
-                // Keep hidden if no messages
-                messagesContainer.style.display = 'none';
-                return;
-            }
-
-            // Show container only if there are messages
-            messagesContainer.style.display = 'block';
-
-            messages.reverse().forEach(msg => {
-                const messageDiv = document.createElement('div');
-                messageDiv.className = 'guestbook-message';
-                messageDiv.innerHTML = `
-                    <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
-                    <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
-                    <div class="guestbook-message-date">${msg.date}</div>
-                `;
-                messagesContainer.appendChild(messageDiv);
-            });
+            // Always hide on page load - only show when a new blessing is added
+            // This ensures no messages are shown by default
+            messagesContainer.style.display = 'none';
         }
 
         function escapeHtml(text) {
@@ -1551,6 +1489,11 @@
                 timestamp: new Date().getTime()
             };
 
+            // Save to both Firebase and localStorage
+            // First save to localStorage (for immediate display)
+            saveToLocalStorage(newMessage);
+            
+            // Then save to Firebase (for viewing all blessings from all devices)
             if (firebaseInitialized && db) {
                 // Save to Firebase (use serverTimestamp for Firebase)
                 const firebaseMessage = {
@@ -1560,27 +1503,12 @@
                 db.collection('blessings')
                     .add(firebaseMessage)
                     .then(() => {
-                        // Clear form
-                        document.getElementById('guestName').value = '';
-                        document.getElementById('guestMessage').value = '';
-                        
-                        // Show the messages container and reload messages
-                        const messagesContainer = document.getElementById('guestbookMessages');
-                        messagesContainer.style.display = 'block';
-                        loadGuestMessages();
-                        
-                        // Show thank you message
-                        alert('Thank you for your beautiful blessing! 💕');
+                        console.log('Blessing saved to Firebase successfully!');
                     })
                     .catch((error) => {
-                        console.error('Error saving message:', error);
-                        alert('Error saving message. Please try again.');
-                        // Fallback to localStorage
-                        saveToLocalStorage(newMessage);
+                        console.error('Error saving message to Firebase:', error);
+                        // Message is already saved to localStorage, so it's okay
                     });
-            } else {
-                // Fallback to localStorage
-                saveToLocalStorage(newMessage);
             }
         }
 
@@ -1593,10 +1521,20 @@
             document.getElementById('guestName').value = '';
             document.getElementById('guestMessage').value = '';
 
-            // Show the messages container and reload messages
+            // Show only the newly added blessing (not all messages)
             const messagesContainer = document.getElementById('guestbookMessages');
             messagesContainer.style.display = 'block';
-            loadGuestMessages();
+            messagesContainer.innerHTML = '';
+            
+            // Display only the new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'guestbook-message';
+            messageDiv.innerHTML = `
+                <div class="guestbook-message-name">${escapeHtml(newMessage.name)}</div>
+                <div class="guestbook-message-text">${escapeHtml(newMessage.message)}</div>
+                <div class="guestbook-message-date">${newMessage.date}</div>
+            `;
+            messagesContainer.appendChild(messageDiv);
 
             // Show thank you message
             alert('Thank you for your beautiful blessing! 💕');
@@ -1713,7 +1651,7 @@
         `;
         document.head.appendChild(style);
 
-        // View All Blessings (for couple to see all messages)
+        // View All Blessings (for couple to see all messages from Firebase)
         function viewAllBlessings() {
             const viewContainer = document.getElementById('allBlessingsView');
             const viewBtn = document.getElementById('viewBlessingsBtn');
@@ -1726,9 +1664,10 @@
                     messagesContainer.style.display = 'none';
                 }
                 
-                viewContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">Loading all blessings... 💕</p>';
+                viewContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">Loading all blessings from all devices... 💕</p>';
                 viewContainer.style.display = 'block';
 
+                // Always load from Firebase when viewing all blessings (to see all devices)
                 if (firebaseInitialized && db) {
                     // Load all from Firebase
                     db.collection('blessings')
@@ -1754,25 +1693,26 @@
                             displayAllBlessings(messages, viewContainer, viewBtn, exportBtn, messagesContainer);
                         })
                         .catch((error) => {
-                            console.error('Error loading all messages:', error);
-                            // Fallback to localStorage
+                            console.error('Error loading all messages from Firebase:', error);
+                            // Fallback to localStorage if Firebase fails
                             const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
                             displayAllBlessings(messages, viewContainer, viewBtn, exportBtn, messagesContainer);
                         });
                 } else {
-                    // Load from localStorage
+                    // If Firebase not configured, show localStorage messages
                     const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
                     displayAllBlessings(messages, viewContainer, viewBtn, exportBtn, messagesContainer);
                 }
             } else {
-                // Show default messages again when hiding all blessings
-                if (messagesContainer) {
-                    messagesContainer.style.display = 'block';
-                }
-                
+                // Hide all blessings view
                 viewContainer.style.display = 'none';
                 viewBtn.textContent = '👁️ View All Blessings';
                 exportBtn.style.display = 'none';
+                
+                // Keep default messages hidden (they only show when a new blessing is added)
+                if (messagesContainer) {
+                    messagesContainer.style.display = 'none';
+                }
             }
         }
 
@@ -1814,8 +1754,9 @@
             exportBtn.style.display = 'inline-block';
         }
 
-        // Export Blessings to Text File
+        // Export Blessings to Text File (from Firebase - all devices)
         function exportBlessings() {
+            // Always try to load from Firebase first (to get all blessings from all devices)
             if (firebaseInitialized && db) {
                 // Load all from Firebase
                 db.collection('blessings')
@@ -1828,9 +1769,9 @@
                             // Handle Firestore timestamp
                             if (!msg.date && msg.timestamp) {
                                 const timestamp = msg.timestamp.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp);
-                                msg.date = timestamp.toLocaleDateString('en-US', {
-                                    year: 'numeric',
-                                    month: 'long',
+                                msg.date = timestamp.toLocaleDateString('en-US', { 
+                                    year: 'numeric', 
+                                    month: 'long', 
                                     day: 'numeric',
                                     hour: '2-digit',
                                     minute: '2-digit'
@@ -1847,7 +1788,7 @@
                         downloadBlessings(messages);
                     });
             } else {
-                // Load from localStorage
+                // If Firebase not configured, export from localStorage
                 const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
                 downloadBlessings(messages);
             }
