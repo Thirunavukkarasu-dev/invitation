@@ -7,6 +7,9 @@
     <title>Thirunavukkarasu weds Manjula 💍</title>
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap"
         rel="stylesheet">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <style>
         /* body {
             margin: 0;
@@ -119,6 +122,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -177,9 +181,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.1);
             }
@@ -210,6 +217,7 @@
             from {
                 transform: rotate(0deg);
             }
+
             to {
                 transform: rotate(360deg);
             }
@@ -615,10 +623,13 @@
         }
 
         @keyframes sparkle {
-            0%, 100% {
+
+            0%,
+            100% {
                 opacity: 0;
                 transform: scale(0) translateY(0);
             }
+
             50% {
                 opacity: 1;
                 transform: scale(1) translateY(-100px);
@@ -1004,6 +1015,7 @@
                 transform: translateY(-100vh) rotate(0deg);
                 opacity: 1;
             }
+
             100% {
                 transform: translateY(100vh) rotate(720deg);
                 opacity: 0;
@@ -1081,8 +1093,8 @@
             </div>
             <div class="event-time">⏰ 6:00 PM Onwards</div>
             <div style="margin-top: 15px;">
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Reception%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251130T180000/20251130T220000&details=Join%20us%20for%20the%20reception%20celebration!&location=Sengunthar%20Mudaliar%20Thirumana%20Mandapam%2C%20Tharamangalam" 
-                   target="_blank" class="calendar-btn">📅 Add to Calendar</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Reception%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251130T180000/20251130T220000&details=Join%20us%20for%20the%20reception%20celebration!&location=Sengunthar%20Mudaliar%20Thirumana%20Mandapam%2C%20Tharamangalam"
+                    target="_blank" class="calendar-btn">📅 Add to Calendar</a>
             </div>
         </div>
 
@@ -1102,8 +1114,8 @@
             </div>
             <div class="event-time">⏰ 4:30 AM to 6:00 AM</div>
             <div style="margin-top: 15px;">
-                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20Ceremony%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251201T043000/20251201T060000&details=Join%20us%20for%20the%20wedding%20ceremony!&location=Kailasanathar%20Temple%2C%20Tharamangalam" 
-                   target="_blank" class="calendar-btn">📅 Add to Calendar</a>
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20Ceremony%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251201T043000/20251201T060000&details=Join%20us%20for%20the%20wedding%20ceremony!&location=Kailasanathar%20Temple%2C%20Tharamangalam"
+                    target="_blank" class="calendar-btn">📅 Add to Calendar</a>
             </div>
         </div>
 
@@ -1111,7 +1123,8 @@
 
         <!-- Quote Section -->
         <div class="quote-section">
-            <div class="quote-text">"Love is not about how many days, months, or years you have been together. It's about how much you love each other every single day."</div>
+            <div class="quote-text">"Love is not about how many days, months, or years you have been together. It's
+                about how much you love each other every single day."</div>
             <div class="quote-author">— Unknown</div>
         </div>
 
@@ -1120,14 +1133,17 @@
             <div class="guestbook-title">💌 Leave Your Blessings</div>
             <div class="guestbook-form">
                 <input type="text" class="guestbook-input" id="guestName" placeholder="Your Name" required>
-                <textarea class="guestbook-input guestbook-textarea" id="guestMessage" placeholder="Your heartfelt message..." required></textarea>
+                <textarea class="guestbook-input guestbook-textarea" id="guestMessage"
+                    placeholder="Your heartfelt message..." required></textarea>
                 <button class="guestbook-btn" onclick="addGuestMessage()">Send Blessing 💕</button>
             </div>
             <div class="guestbook-messages" id="guestbookMessages"></div>
             <!-- Admin View Button (for couple to see all blessings) -->
             <div style="text-align: center; margin-top: 20px;">
-                <button class="guestbook-admin-btn" onclick="viewAllBlessings()" id="viewBlessingsBtn">👁️ View All Blessings</button>
-                <button class="guestbook-admin-btn" onclick="exportBlessings()" id="exportBlessingsBtn" style="display: none; margin-left: 10px;">📥 Export Blessings</button>
+                <button class="guestbook-admin-btn" onclick="viewAllBlessings()" id="viewBlessingsBtn">👁️ View All
+                    Blessings</button>
+                <button class="guestbook-admin-btn" onclick="exportBlessings()" id="exportBlessingsBtn"
+                    style="display: none; margin-left: 10px;">📥 Export Blessings</button>
             </div>
             <div id="allBlessingsView" style="display: none; margin-top: 20px;"></div>
         </div>
@@ -1301,8 +1317,91 @@
         }
 
 
-        // Guest Book Functionality
+        // Firebase Configuration
+        // IMPORTANT: Replace these with your own Firebase config
+        // Get it from: https://console.firebase.google.com/
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA_fgAD7m6PwRUt1GWY9nlQf_99E7NZugs",
+            authDomain: "comments-24703.firebaseapp.com",
+            projectId: "comments-24703",
+            storageBucket: "comments-24703.firebasestorage.app",
+            messagingSenderId: "667016944826",
+            appId: "1:667016944826:web:77260b35389550bfc9f683",
+            measurementId: "G-1K2WKM5QXT"
+        };
+
+        // Initialize Firebase (only if config is provided)
+        let db = null;
+        let firebaseInitialized = false;
+
+        try {
+            if (firebaseConfig.apiKey !== "YOUR_API_KEY") {
+                firebase.initializeApp(firebaseConfig);
+                db = firebase.firestore();
+                firebaseInitialized = true;
+                console.log('Firebase initialized successfully!');
+            } else {
+                console.log('Firebase not configured. Using localStorage fallback.');
+            }
+        } catch (error) {
+            console.log('Firebase initialization error. Using localStorage fallback:', error);
+        }
+
+        // Guest Book Functionality with Firebase + localStorage fallback
         function loadGuestMessages() {
+            const messagesContainer = document.getElementById('guestbookMessages');
+            messagesContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">Loading blessings... 💕</p>';
+
+            if (firebaseInitialized && db) {
+                console.log("🚀 ~ loadGuestMessages ~ firebaseInitialized:", firebaseInitialized)
+                // Load from Firebase
+                db.collection('blessings')
+                    .orderBy('timestamp', 'desc')
+                    .limit(10)
+                    .get()
+                    .then((snapshot) => {
+                        messagesContainer.innerHTML = '';
+
+                        if (snapshot.empty) {
+                            messagesContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">No messages yet. Be the first to leave a blessing! 💕</p>';
+                            return;
+                        }
+
+                        snapshot.forEach((doc) => {
+                            const msg = doc.data();
+                            // Handle Firestore timestamp
+                            if (!msg.date && msg.timestamp) {
+                                const timestamp = msg.timestamp.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp);
+                                msg.date = timestamp.toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+                            }
+                            const messageDiv = document.createElement('div');
+                            messageDiv.className = 'guestbook-message';
+                            messageDiv.innerHTML = `
+                                <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
+                                <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
+                                <div class="guestbook-message-date">${msg.date}</div>
+                            `;
+                            messagesContainer.appendChild(messageDiv);
+                        });
+                    })
+                    .catch((error) => {
+                        console.error('Error loading messages:', error);
+                        loadFromLocalStorage();
+                    });
+            } else {
+                // Fallback to localStorage
+                loadFromLocalStorage();
+            }
+        }
+
+        function loadFromLocalStorage() {
             const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
             const messagesContainer = document.getElementById('guestbookMessages');
             messagesContainer.innerHTML = '';
@@ -1339,19 +1438,52 @@
                 return;
             }
 
-            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
             const newMessage = {
                 name: name,
                 message: message,
-                date: new Date().toLocaleDateString('en-US', { 
-                    year: 'numeric', 
-                    month: 'long', 
+                date: new Date().toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
                     day: 'numeric',
                     hour: '2-digit',
                     minute: '2-digit'
-                })
+                }),
+                timestamp: new Date().getTime()
             };
 
+            if (firebaseInitialized && db) {
+                // Save to Firebase (use serverTimestamp for Firebase)
+                const firebaseMessage = {
+                    ...newMessage,
+                    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+                };
+                db.collection('blessings')
+                    .add(firebaseMessage)
+                    .then(() => {
+                        // Clear form
+                        document.getElementById('guestName').value = '';
+                        document.getElementById('guestMessage').value = '';
+
+                        // Reload messages
+                        loadGuestMessages();
+
+                        // Show thank you message
+                        alert('Thank you for your beautiful blessing! 💕');
+                    })
+                    .catch((error) => {
+                        console.error('Error saving message:', error);
+                        alert('Error saving message. Please try again.');
+                        // Fallback to localStorage
+                        saveToLocalStorage(newMessage);
+                    });
+            } else {
+                // Fallback to localStorage
+                saveToLocalStorage(newMessage);
+            }
+        }
+
+        function saveToLocalStorage(newMessage) {
+            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
             messages.push(newMessage);
             localStorage.setItem('guestbookMessages', JSON.stringify(messages));
 
@@ -1371,43 +1503,49 @@
 
         // View All Blessings (for couple to see all messages)
         function viewAllBlessings() {
-            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
             const viewContainer = document.getElementById('allBlessingsView');
             const viewBtn = document.getElementById('viewBlessingsBtn');
             const exportBtn = document.getElementById('exportBlessingsBtn');
 
             if (viewContainer.style.display === 'none') {
-                if (messages.length === 0) {
-                    viewContainer.innerHTML = `
-                        <div class="all-blessings-container">
-                            <div class="all-blessings-title">💌 All Blessings</div>
-                            <div class="blessing-count">No blessings yet. Be the first! 💕</div>
-                        </div>
-                    `;
-                } else {
-                    let html = `
-                        <div class="all-blessings-container">
-                            <div class="all-blessings-title">💌 All Blessings</div>
-                            <div class="blessing-count">Total: ${messages.length} blessing${messages.length > 1 ? 's' : ''} 💕</div>
-                    `;
-                    
-                    messages.reverse().forEach((msg, index) => {
-                        html += `
-                            <div class="guestbook-message" style="margin-bottom: 15px;">
-                                <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
-                                <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
-                                <div class="guestbook-message-date">${msg.date}</div>
-                            </div>
-                        `;
-                    });
-                    
-                    html += `</div>`;
-                    viewContainer.innerHTML = html;
-                }
-                
+                viewContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">Loading all blessings... 💕</p>';
                 viewContainer.style.display = 'block';
-                viewBtn.textContent = '🙈 Hide Blessings';
-                exportBtn.style.display = 'inline-block';
+
+                if (firebaseInitialized && db) {
+                    // Load all from Firebase
+                    db.collection('blessings')
+                        .orderBy('timestamp', 'desc')
+                        .get()
+                        .then((snapshot) => {
+                            const messages = [];
+                            snapshot.forEach((doc) => {
+                                const msg = doc.data();
+                                // Handle Firestore timestamp
+                                if (!msg.date && msg.timestamp) {
+                                    const timestamp = msg.timestamp.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp);
+                                    msg.date = timestamp.toLocaleDateString('en-US', {
+                                        year: 'numeric',
+                                        month: 'long',
+                                        day: 'numeric',
+                                        hour: '2-digit',
+                                        minute: '2-digit'
+                                    });
+                                }
+                                messages.push(msg);
+                            });
+                            displayAllBlessings(messages, viewContainer, viewBtn, exportBtn);
+                        })
+                        .catch((error) => {
+                            console.error('Error loading all messages:', error);
+                            // Fallback to localStorage
+                            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+                            displayAllBlessings(messages, viewContainer, viewBtn, exportBtn);
+                        });
+                } else {
+                    // Load from localStorage
+                    const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+                    displayAllBlessings(messages, viewContainer, viewBtn, exportBtn);
+                }
             } else {
                 viewContainer.style.display = 'none';
                 viewBtn.textContent = '👁️ View All Blessings';
@@ -1415,10 +1553,79 @@
             }
         }
 
+        function displayAllBlessings(messages, viewContainer, viewBtn, exportBtn) {
+            if (messages.length === 0) {
+                viewContainer.innerHTML = `
+                    <div class="all-blessings-container">
+                        <div class="all-blessings-title">💌 All Blessings</div>
+                        <div class="blessing-count">No blessings yet. Be the first! 💕</div>
+                    </div>
+                `;
+            } else {
+                let html = `
+                    <div class="all-blessings-container">
+                        <div class="all-blessings-title">💌 All Blessings</div>
+                        <div class="blessing-count">Total: ${messages.length} blessing${messages.length > 1 ? 's' : ''} 💕</div>
+                `;
+
+                messages.forEach((msg, index) => {
+                    html += `
+                        <div class="guestbook-message" style="margin-bottom: 15px;">
+                            <div class="guestbook-message-name">${escapeHtml(msg.name)}</div>
+                            <div class="guestbook-message-text">${escapeHtml(msg.message)}</div>
+                            <div class="guestbook-message-date">${msg.date}</div>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                viewContainer.innerHTML = html;
+            }
+
+            viewBtn.textContent = '🙈 Hide Blessings';
+            exportBtn.style.display = 'inline-block';
+        }
+
         // Export Blessings to Text File
         function exportBlessings() {
-            const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
-            
+            if (firebaseInitialized && db) {
+                // Load all from Firebase
+                db.collection('blessings')
+                    .orderBy('timestamp', 'desc')
+                    .get()
+                    .then((snapshot) => {
+                        const messages = [];
+                        snapshot.forEach((doc) => {
+                            const msg = doc.data();
+                            // Handle Firestore timestamp
+                            if (!msg.date && msg.timestamp) {
+                                const timestamp = msg.timestamp.toDate ? msg.timestamp.toDate() : new Date(msg.timestamp);
+                                msg.date = timestamp.toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric',
+                                    hour: '2-digit',
+                                    minute: '2-digit'
+                                });
+                            }
+                            messages.push(msg);
+                        });
+                        downloadBlessings(messages);
+                    })
+                    .catch((error) => {
+                        console.error('Error loading messages for export:', error);
+                        // Fallback to localStorage
+                        const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+                        downloadBlessings(messages);
+                    });
+            } else {
+                // Load from localStorage
+                const messages = JSON.parse(localStorage.getItem('guestbookMessages') || '[]');
+                downloadBlessings(messages);
+            }
+        }
+
+        function downloadBlessings(messages) {
             if (messages.length === 0) {
                 alert('No blessings to export yet! 💕');
                 return;
@@ -1430,7 +1637,7 @@
             textContent += `Exported on: ${new Date().toLocaleString()}\n\n`;
             textContent += '='.repeat(50) + '\n\n';
 
-            messages.reverse().forEach((msg, index) => {
+            messages.forEach((msg, index) => {
                 textContent += `Blessing #${index + 1}\n`;
                 textContent += `Name: ${msg.name}\n`;
                 textContent += `Date: ${msg.date}\n`;
@@ -1448,7 +1655,7 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
-            
+
             alert(`Blessings exported successfully! 📥\n\nTotal: ${messages.length} blessing${messages.length > 1 ? 's' : ''}`);
         }
 
