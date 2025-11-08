@@ -87,6 +87,134 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        /* Modern Event Cards */
+        .event-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 236, 0.95));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .event-card.reception {
+            animation-delay: 0.2s;
+        }
+
+        .event-card.wedding {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .event-card:hover::before {
+            left: 100%;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-title {
+            font-family: "Great Vibes", cursive;
+            font-size: 2em;
+            color: #b30000;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(255, 214, 160, 0.5);
+        }
+
+        .event-date {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #8b0000;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .event-time {
+            font-size: 1.2em;
+            color: #5a2d0c;
+            margin: 8px 0;
+            font-weight: 500;
+        }
+
+        .event-icon {
+            font-size: 1.5em;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        .timeline-divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 500px;
+            gap: 15px;
+        }
+
+        .timeline-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        }
+
+        .timeline-icon {
+            font-size: 2em;
+            animation: rotate 3s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         .location-btn {
             display: inline-block;
             background: linear-gradient(135deg, #ffd700, #ff8c00);
@@ -368,6 +496,318 @@
             .radha-krishna {
                 width: 140px;
             }
+
+            .event-card {
+                padding: 20px;
+                margin: 15px auto;
+            }
+
+            .event-title {
+                font-size: 1.6em;
+            }
+
+            .event-date {
+                font-size: 1.2em;
+            }
+
+            .event-time {
+                font-size: 1em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .gallery-title {
+                font-size: 2em;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+
+            .info-title {
+                font-size: 1.6em;
+            }
+
+            .info-content {
+                font-size: 1em;
+            }
+
+            .quote-section {
+                padding: 20px;
+                font-size: 1em;
+            }
+
+            .calendar-btn {
+                font-size: 0.85em;
+                padding: 8px 16px;
+            }
+        }
+
+        /* Sparkle Animation */
+        .sparkle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 3s ease-in-out infinite;
+            box-shadow: 0 0 6px 2px rgba(255, 215, 0, 0.8);
+        }
+
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) translateY(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) translateY(-100px);
+            }
+        }
+
+        /* Enhanced gradient text effect */
+        .gradient-text {
+            background: linear-gradient(135deg, #b30000, #ff6b6b, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Ripple Effect */
+        .event-card,
+        .details,
+        .quote-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add to Calendar Button */
+        .calendar-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            margin: 8px 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .calendar-btn:hover {
+            background: linear-gradient(135deg, #45a049, #4CAF50);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Photo Gallery */
+        .gallery-section {
+            margin: 40px auto;
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .gallery-title {
+            font-family: "Great Vibes", cursive;
+            font-size: 2.5em;
+            color: #b30000;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(255, 214, 160, 0.5);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 247, 236, 0.95));
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            animation: fadeInUp 0.8s ease-out;
+            animation-fill-mode: forwards;
+            opacity: 0;
+        }
+
+        .info-card.dress-code {
+            animation-delay: 0.3s;
+        }
+
+        .info-card.contact {
+            animation-delay: 0.5s;
+        }
+
+        .info-card.quote {
+            animation-delay: 0.7s;
+        }
+
+        .info-title {
+            font-family: "Great Vibes", cursive;
+            font-size: 2em;
+            color: #b30000;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(255, 214, 160, 0.5);
+        }
+
+        .info-content {
+            font-size: 1.1em;
+            color: #5a2d0c;
+            line-height: 1.8;
+        }
+
+        .info-content strong {
+            color: #8b0000;
+        }
+
+        /* Social Share Buttons */
+        .social-share {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px auto;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5em;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .social-btn.facebook {
+            background: linear-gradient(135deg, #1877F2, #0A5F9E);
+        }
+
+        .social-btn.twitter {
+            background: linear-gradient(135deg, #1DA1F2, #0D8BD9);
+        }
+
+        /* Confetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ffd700;
+            animation: confetti-fall 3s linear infinite;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Quote Section */
+        .quote-section {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2), rgba(255, 192, 203, 0.1));
+            border-left: 4px solid #ff69b4;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px auto;
+            width: 90%;
+            max-width: 500px;
+            font-style: italic;
+            font-size: 1.2em;
+            color: #8b0000;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .quote-text {
+            font-family: "Playfair Display", serif;
+            line-height: 1.8;
+            margin-bottom: 10px;
+        }
+
+        .quote-author {
+            font-size: 0.9em;
+            color: #5a2d0c;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -394,9 +834,8 @@
 
         <div class="details">
             <p>With blessings of Almighty and our families,</p>
-            <p>We joyfully invite you to celebrate our wedding reception!</p>
+            <p>We joyfully invite you to celebrate our special moments!</p>
             <p><strong>📍 Venue:</strong> Sengunthar Mudaliar Thirumana Mandapam, Tharamangalam</p>
-            <p><strong>🗓️ Date:</strong> Sunday, 30th November | 6 PM onwards</p>
             <p>
                 <a href="https://maps.app.goo.gl/wdGCWZXpe5xTos8B8" target="_blank" class="location-btn">
                     📍 View Location
@@ -404,7 +843,48 @@
             </p>
         </div>
 
+        <!-- Reception Event Card -->
+        <div class="event-card reception">
+            <div class="event-title">🎉 Reception</div>
+            <div class="event-date">
+                <span class="event-icon">📅</span>
+                <span>November 30, 2025</span>
+            </div>
+            <div class="event-time">⏰ 6:00 PM Onwards</div>
+            <div style="margin-top: 15px;">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Reception%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251130T180000/20251130T220000&details=Join%20us%20for%20the%20reception%20celebration!&location=Sengunthar%20Mudaliar%20Thirumana%20Mandapam%2C%20Tharamangalam" 
+                   target="_blank" class="calendar-btn">📅 Add to Calendar</a>
+            </div>
+        </div>
+
+        <!-- Timeline Divider -->
+        <div class="timeline-divider">
+            <div class="timeline-line"></div>
+            <div class="timeline-icon">💫</div>
+            <div class="timeline-line"></div>
+        </div>
+
+        <!-- Wedding Event Card -->
+        <div class="event-card wedding">
+            <div class="event-title">💍 Wedding Ceremony</div>
+            <div class="event-date">
+                <span class="event-icon">📅</span>
+                <span>December 1, 2025</span>
+            </div>
+            <div class="event-time">⏰ 4:30 AM to 6:00 AM</div>
+            <div style="margin-top: 15px;">
+                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20Ceremony%20-%20Thirunavukkarasu%20%26%20Manjula&dates=20251201T043000/20251201T060000&details=Join%20us%20for%20the%20wedding%20ceremony!&location=Sengunthar%20Mudaliar%20Thirumana%20Mandapam%2C%20Tharamangalam" 
+                   target="_blank" class="calendar-btn">📅 Add to Calendar</a>
+            </div>
+        </div>
+
         <div class="countdown" id="countdown"></div>
+
+        <!-- Quote Section -->
+        <div class="quote-section">
+            <div class="quote-text">"Love is not about how many days, months, or years you have been together. It's about how much you love each other every single day."</div>
+            <div class="quote-author">— Unknown</div>
+        </div>
 
         <div class="footer">
             <p>💖 With love,</p>
@@ -435,6 +915,19 @@
             setTimeout(() => heart.remove(), 8000);
         }
         setInterval(createHeart, 500);
+
+        // ✨ Sparkle animation
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            sparkle.style.left = Math.random() * 100 + 'vw';
+            sparkle.style.top = Math.random() * 100 + 'vh';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparkle.style.animationDuration = 2 + Math.random() * 2 + 's';
+            document.body.appendChild(sparkle);
+            setTimeout(() => sparkle.remove(), 4000);
+        }
+        setInterval(createSparkle, 800);
 
         const music = document.getElementById('bgMusic');
         const btn = document.getElementById('musicBtn');
@@ -467,18 +960,103 @@
                 `⏳ ${days}d ${hours}h ${mins}m ${secs}s left`;
         }, 1000);
 
-        // Share button
+        // Share button with beautiful message
         document.getElementById("shareBtn").addEventListener("click", async () => {
             const shareData = {
-                title: "Mathi Wedding Invitation",
-                text: "Join us to celebrate the love of Thirunavukkarasu ❤️ Manjula on 30th Nov, 6PM @ Sengunthar Mandapam!",
+                title: "💍 Thirunavukkarasu & Manjula Wedding Invitation",
+                text: "💕 You're cordially invited to celebrate our special day! 💕\n\n🎉 Reception: November 30, 2025 at 6:00 PM onwards\n💍 Wedding Ceremony: December 1, 2025 from 4:30 AM to 6:00 AM\n\n📍 Venue: Sengunthar Mudaliar Thirumana Mandapam, Tharamangalam\n\nJoin us as we begin our journey of love and togetherness! ❤️\n\nWith blessings and love,\nThirunavukkarasu & Manjula",
                 url: window.location.href
             };
             if (navigator.share) {
-                await navigator.share(shareData);
+                try {
+                    await navigator.share(shareData);
+                } catch (err) {
+                    // User cancelled or error occurred
+                }
             } else {
-                alert("Sharing not supported on this device");
+                // Fallback: Copy to clipboard
+                const textToCopy = `${shareData.title}\n\n${shareData.text}\n\n${shareData.url}`;
+                if (navigator.clipboard) {
+                    await navigator.clipboard.writeText(textToCopy);
+                    alert("Invitation link copied to clipboard! 📋");
+                } else {
+                    prompt("Copy this invitation link:", window.location.href);
+                }
             }
+        });
+
+
+        // Scroll reveal animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for scroll animation
+        document.querySelectorAll('.event-card, .quote-section, .details').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Click ripple effect on cards
+        function createRipple(event, element) {
+            const ripple = document.createElement('span');
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+
+            element.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        document.querySelectorAll('.event-card, .details, .quote-section').forEach(card => {
+            card.addEventListener('click', (e) => {
+                createRipple(e, card);
+            });
+        });
+
+        // Confetti Animation on Page Load
+        function createConfetti() {
+            const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#45b7d1', '#feca57', '#ff9ff3'];
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = (5 + Math.random() * 10) + 'px';
+                    confetti.style.height = (5 + Math.random() * 10) + 'px';
+                    confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    confetti.style.animationDelay = Math.random() * 2 + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), 5000);
+                }, i * 50);
+            }
+        }
+
+        // Trigger confetti on page load
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 500);
         });
     </script>
 </body>
